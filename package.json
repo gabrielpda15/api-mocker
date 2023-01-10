@@ -1,0 +1,47 @@
+{
+  "name": "api-mocker",
+  "description": "A simple tool to make easier to mock apis.",
+  "version": "1.0.0",
+  "main": "./build/main.js",
+  "engines": {
+    "node": "18.12.1",
+    "yarn": "1.22.19"
+  },
+  "scripts": {
+    "start": "npm run build && electron .",
+    "start:dev": "npm run build && concurrently -k -n Compiler,Electron \"nodemon\" \"electron .\"",
+    "rebuild": "tsc && yarn run copy-files && sass src/styles.scss build/styles.css",
+    "build": "yarn run clear && tsc && yarn run copy-files && sass src/styles.scss build/styles.css",
+    "copy-files": "copyfiles -u 1 -e \"src/**/*{.js,.ts,.scss}\" src/**/* build/",
+    "clear": "rimraf build/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielpda15/api-mocker.git"
+  },
+  "author": "Gabriel Pupim <gabriel.pda15@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielpda15/api-mocker/issues"
+  },
+  "homepage": "https://github.com/gabrielpda15/api-mocker#readme",
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.11.18",
+    "bootstrap": "^5.2.3",
+    "concurrently": "^7.6.0",
+    "copyfiles": "^2.4.1",
+    "electron": "^22.0.0",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "sass": "^1.57.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.9",
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.0.3",
+    "glob": "^8.0.3",
+    "reflect-metadata": "^0.1.13"
+  }
+}
